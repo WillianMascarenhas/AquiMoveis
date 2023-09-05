@@ -31,4 +31,4 @@ export const usersSchemaResponse = userSchema.array()
 export const userSchemaResponse = userSchema.omit({
     password: true
 })
-export const userSchemaUpdate = userSchema.optional()
+export const userSchemaUpdate = userSchema.partial()
