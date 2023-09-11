@@ -1,5 +1,6 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { hash } from "bcryptjs";
+import { Cart } from "./cart.entity";
 
 @Entity("users")
 export class User {
@@ -27,17 +28,16 @@ export class User {
   complement: string;
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   register_date: Date;
-  @Column({ nullable: true })
+  @Column({ default: false})
   super_user: boolean
   @Column({ nullable: true })
   reset_token: string
   @Column({ nullable: true, type: "timestamp" })
   reset_token_expiration: Date;
 
-//   @OneToMany(() => Car, (car) => car.user, { onDelete: "CASCADE" })
-//   cars: Car[];
-//   @OneToMany(() => CarUserComments, (carUserComments) => carUserComments.user)
-//   comments: CarUserComments[];
+  @OneToOne(() => Cart, (cart) => cart.user, { onDelete: "CASCADE" })
+  @JoinColumn()
+  cart: Cart;
 
   @BeforeInsert()
   @BeforeUpdate()

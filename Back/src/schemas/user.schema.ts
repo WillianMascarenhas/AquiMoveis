@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { cartSchema, cartSchemaRequest } from "./cart.schema"
 
 export const userSchema = z.object({
     id: z.number(),
@@ -13,7 +14,7 @@ export const userSchema = z.object({
     number: z.string().max(255),
     complement: z.string().max(255).default(""),
     register_date: z.date().nullish().default(() => new Date()),
-    super_user: z.boolean().nullish().default(false),
+    super_user: z.boolean().default(false),
     reset_token: z.string().nullish(),
     reset_token_expiration: z.string().nullish(),
 })
@@ -23,12 +24,18 @@ export const userSchemaRequest = userSchema.omit({
     register_date: true,
     super_user: true,
     reset_token: true,
-    reset_token_expiration: true
+    reset_token_expiration: true,
+    cart: true
 })
 
-export const usersSchemaResponse = userSchema.array()
+export const usersSchema = userSchema.omit({
+    password: true
+})
+
+export const usersSchemaResponse = usersSchema.array()
 
 export const userSchemaResponse = userSchema.omit({
     password: true
-})
+}).extend({cart:cartSchema})
+
 export const userSchemaUpdate = userSchema.partial()

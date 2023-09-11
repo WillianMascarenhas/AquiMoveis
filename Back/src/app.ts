@@ -6,6 +6,7 @@ import "dotenv/config"
 import { handlerAppError } from "./errors/handleAppErro";
 import { userRouter } from "./routes/user.routes";
 import { loginRouter } from "./routes/login.routes";
+import { furnitureRouter } from "./routes/furniture.routes";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 app.use("/user", userRouter)
 app.use("/login", loginRouter)
+app.use("/furniture", furnitureRouter)
 
 app.use(handlerAppError)
 
