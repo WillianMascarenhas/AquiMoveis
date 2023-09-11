@@ -7,6 +7,7 @@ import { handlerAppError } from "./errors/handleAppErro";
 import { userRouter } from "./routes/user.routes";
 import { loginRouter } from "./routes/login.routes";
 import { furnitureRouter } from "./routes/furniture.routes";
+import { cartRouter } from "./routes/cart.routes";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cors({
 app.use("/user", userRouter)
 app.use("/login", loginRouter)
 app.use("/furniture", furnitureRouter)
+app.use("/cart", cartRouter)
 
 app.use(handlerAppError)
 
