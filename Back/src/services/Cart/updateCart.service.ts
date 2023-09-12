@@ -11,12 +11,12 @@ export const updateCartService = async (userId: number, data:ICartToAdd): Promis
     const userRepository = AppDataSource.getRepository(User)
     const furnitureRepository = AppDataSource.getRepository(Furniture)
 
-    const user = await userRepository.findOneBy({id: userId})
-
-    if(!user){
-        throw new AppError("User not found", 404)
+        const user = await userRepository.findOneBy({id: userId})
+        
+        if(!user){
+            throw new AppError("User not found", 404)
     }
-
+    
     // const findCart = await cartRepository.findOneBy({ user: { id: user.id } })
     const findCart = await cartRepository.findOne({
         where:{ 
@@ -28,45 +28,52 @@ export const updateCartService = async (userId: number, data:ICartToAdd): Promis
     if (!findCart) {
         throw new AppError("Cart not found", 404)
     }
-
+    
     const ArrToAddOnCart: Furniture[] = []
-
-    if(data.furniture){
+    
+    if (data.furniture) {
         findCart.furniture.forEach(item => ArrToAddOnCart.push(item))
-
-        data.furniture.map(async furnitureId =>{
-            const findFurniture = await furnitureRepository.findOneBy({id:furnitureId})
-            if(findFurniture){
-                ArrToAddOnCart.push(findFurniture)
-            }
-            
-            const newFurnitureArr = cartRepository.create({
-                ...findCart,
-                furniture: ArrToAddOnCart
-            })
-            
-            await cartRepository.save(newFurnitureArr)
+        const test = data.furniture.map(async furnitureId => {
+          const findFurniture = await furnitureRepository.findOneBy({ id: furnitureId })
+          if (findFurniture) {
+            ArrToAddOnCart.push(findFurniture)
+          }
+      
+          const newFurnitureArr = cartRepository.create({
+            ...findCart,
+            furniture: ArrToAddOnCart
+          })
+      
+          await cartRepository.save(newFurnitureArr)
+      
+          return newFurnitureArr
         })
-        return findCart
-    }
+        const furnitureObjects = await Promise.all(test)
+        return furnitureObjects[furnitureObjects.length -1]
+      }
 
+    
     if(data.delete_furniture){
-       const deleteOnCart = findCart.furniture.filter(furnitureToDelete => furnitureToDelete.id !== data.delete_furniture)
+        const deleteOnCart = findCart.furniture.filter(furnitureToDelete => furnitureToDelete.id !== data.delete_furniture)
+        
+        const newFurnitureArr = cartRepository.create({
+            ...findCart,
+            furniture: deleteOnCart
+        })
+        
+        await cartRepository.save(newFurnitureArr)
 
-       const newFurnitureArr = cartRepository.create({
-        ...findCart,
-        furniture: deleteOnCart
-    })
-
-    await cartRepository.save(newFurnitureArr)
-
-    const findCartAfter = await cartRepository.findOne({
-        where:{ 
-            user: { id: user.id } 
-        },
-        relations:["furniture"]
-    })
-
-    return findCartAfter
+        return newFurnitureArr
+         
     }
+
+    
+//     const findCartAfter = await cartRepository.findOne({
+//         where:{ 
+//             user: { id: user.id } 
+//         },
+//         relations:["furniture"]
+// })
+
+// return findCartAfter
 }
