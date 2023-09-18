@@ -21,11 +21,11 @@ export const NavBar = () => {
                     <figcaption className="hidden">Website logo</figcaption>
                 </figure>
             </Link>
-            <ul className="hidden lg:flex gap-5">
-                <Link href={"/"}>Início</Link>
-                <Link href={""}>Quem Somos</Link>
-                <Link href={""}>Produtos</Link>
-                <Link href={""}>Contatos</Link>
+            <ul className="hidden lg:flex">
+                <Link className="nav group text-gray-1000" href={"/"}>Início <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-brand1-1000 transition-all duration-500 ease-in-out group-hover:w-full"></span></Link>
+                <Link className="nav group text-gray-1000" href={""}>Quem Somos <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-brand1-1000 transition-all duration-500 ease-in-out group-hover:w-full"></span></Link>
+                <Link className="nav group text-gray-1000" href={""}>Produtos <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-brand1-1000 transition-all duration-500 ease-in-out group-hover:w-full"></span></Link>
+                <Link className="nav group text-gray-1000" href={""}>Contatos <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-brand1-1000 transition-all duration-500 ease-in-out group-hover:w-full"></span></Link>
             </ul>
 
             {/* Mobile Button */}
@@ -71,9 +71,9 @@ export const NavBar = () => {
                         </ul>
                 </div>
             </div>
-            <div className="hidden lg:flex gap-5">
-                <Link href="">Login</Link>
-                <Link href="">Cadastra-se</Link>
+            <div className="hidden lg:flex gap-11">
+                <Link href="" className="items-center hover:text-brand1-1000 duration-300">Login</Link>
+                <Link className="border-2 border-brand1-750 rounded-lg p-[7px_12px] bg-brand1-750 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-1000 duration-300" href="">Cadastra-se</Link>
             </div>
         </div>
     </nav>

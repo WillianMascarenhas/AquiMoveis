@@ -2,26 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-}
+} */
+/* @apply bg-gradient-to-b from-grey-0 from-5% to-beige-750 to-100% w-screen text-grey-750 */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .body {
+    @apply bg-gray-250 w-screen h-screen text-gray-1000 items-center justify-center
   }
+  .container {
+    @apply flex max-w-[90%] w-[100%];
+  }
+
+.nav {
+  @apply text-base bg-transparent py-4 px-6 text-brand1-750 relative transition-all duration-500 ease-in-out;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.nav:hover::before {
+  @apply w-full;
+}
+
+.before-nav {
+  @apply absolute left-0 bottom-0 h-2 w-0 bg-brand1-750 transition-all duration-500 ease-in-out;
+}
+
+.hover:before-nav:hover::before {
+  @apply w-full;
+}
+
+  
+
+  @media (min-width: 1000px) {
+    .container {
+      background-color: aqua;
+    }
+  }
 }
