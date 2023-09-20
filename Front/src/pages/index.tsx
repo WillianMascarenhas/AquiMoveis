@@ -1,4 +1,6 @@
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { Main } from '@/components/Main'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
@@ -8,8 +10,10 @@ const poppins = Poppins({
 
 export default function Home() {
   return (
-    <main className={`body ${poppins.className}`}>
+    <main className={`${poppins.className}`}>
       <Header/>
+      <Main/>
+      <Footer/>
     </main>
   )
 }

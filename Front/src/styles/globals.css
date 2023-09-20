@@ -11,7 +11,7 @@
 
 @layer components {
   .body {
-    @apply bg-gray-250 w-screen h-screen text-gray-1000 items-center justify-center
+    @apply bg-gray-250 relative -z-50 h-screen text-gray-1000 
   }
   .container {
     @apply flex max-w-[90%] w-[100%];
@@ -33,11 +33,7 @@
   @apply w-full;
 }
 
-  
-
-  @media (min-width: 1000px) {
-    .container {
-      background-color: aqua;
-    }
-  }
+.buttonMain {
+  @apply flex items-center gap-3 text-lg border-2 border-brand2-1000 rounded-lg p-[5px_12px] hover:border-transparent duration-300;
+}
 }

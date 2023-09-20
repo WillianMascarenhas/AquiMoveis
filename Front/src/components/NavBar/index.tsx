@@ -13,7 +13,7 @@ export const NavBar = () => {
     }
 
   return (
-    <nav className="fixed flex items-center h-[100px] top-0 left-0 right-0 z-10 ease-in duration-300 shadow-[rgba(169,_98,_80,_0.20)_0px_9px_20px]">
+    <nav className="fixed flex items-center h-[100px] top-0 left-0 right-0 z-50 ease-in duration-300 bg-gray-0 shadow-2xl shadow-gray-100/70">
         <div className="w-[90vw] m-auto flex justify-between items-center">
             <Link href={"/"}>
                 <figure className="z-10">
@@ -71,8 +71,8 @@ export const NavBar = () => {
                         </ul>
                 </div>
             </div>
-            <div className="hidden lg:flex gap-11">
-                <Link href="" className="items-center hover:text-brand1-1000 duration-300">Login</Link>
+            <div className="hidden lg:flex items-center gap-11">
+                <Link href="" className=" hover:text-brand1-1000 duration-300">Login</Link>
                 <Link className="border-2 border-brand1-750 rounded-lg p-[7px_12px] bg-brand1-750 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-1000 duration-300" href="">Cadastra-se</Link>
             </div>
         </div>
