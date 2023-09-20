@@ -22,8 +22,8 @@ export const Footer = () => {
               <figcaption className="hidden">Website logo</figcaption>
             </figure>
           </Link>
-          <div className="flex gap-[50px] mt-[7px]">
-            <div className="flex flex-col pr-[80px] h-[300px] border-r-2 text-lg gap-4">
+          <div className="md:flex gap-[50px] mt-[7px]">
+            <div className="flex flex-col pr-[80px] h-[100px] mb-[30px] md:mb-0 md:h-[300px] border-b-2 md:border-b-0 md:border-r-2 text-lg gap-4">
               <Link href={""}>Produtos</Link>
               <Link href={""}>Quem Somos</Link>
             </div>

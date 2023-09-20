@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+
 export const Main = () => {
   useEffect(() => {
     AOS.init({
@@ -22,7 +23,7 @@ export const Main = () => {
       style={{
         backgroundImage: `url(https://images.pexels.com/photos/169185/pexels-photo-169185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`,
       }}
-      className="overflow-x-hidden flex flex-col justify-center items-center z-0 mt-[100px] bg-fixed bg-center bg-cover"
+      className="overflow-x-hidden flex flex-col justify-center items-center z-0 mt-[100px] bg-fixed bg-center bg-cover relative"
     >
       {/* Overlay */}
       <div className="fixed mt-[100px] top-0 left-0 right-0 bottom-0 h-full bg-gray-400/40 z-[0]" />
