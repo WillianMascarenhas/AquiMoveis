@@ -36,4 +36,5 @@
 .buttonMain {
   @apply flex items-center gap-3 text-lg border-2 border-brand2-1000 rounded-lg p-[5px_12px] hover:border-transparent duration-300;
 }
+
 }
