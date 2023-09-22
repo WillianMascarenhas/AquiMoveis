@@ -6,7 +6,9 @@ import { furnituresResponseSchema } from "../../schemas/furniture.schema";
 export const retrieveFurnitureService = async ():Promise<IFurnituresResponse> =>{
     const furnitureRepository = AppDataSource.getRepository(Furniture)
 
-    const listFurniture = await furnitureRepository.find()
+    const listFurniture = await furnitureRepository.find({
+        relations: ["furnitureImages"]
+    })
 
     return  furnituresResponseSchema.parse(listFurniture)
 

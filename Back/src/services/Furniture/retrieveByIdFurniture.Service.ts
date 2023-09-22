@@ -7,9 +7,13 @@ import { furnitureSchema } from "../../schemas/furniture.schema";
 export const retrieveByIdFurnitureService = async (furnitureId:number):Promise<IFurnitureResponse> =>{
     const furnitureRepository = AppDataSource.getRepository(Furniture)
 
-    const findFurniture = await furnitureRepository.findOneBy({
-        id: furnitureId
-    })
+    const findFurniture = await furnitureRepository.findOne({
+        where: {
+            id: furnitureId
+        },
+        relations: ["furnitureImages"]
+    }
+    )
 
     if(!findFurniture){
         throw new AppError("Furniture not found", 404)

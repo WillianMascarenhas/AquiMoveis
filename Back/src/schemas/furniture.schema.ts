@@ -1,4 +1,5 @@
 import { number, z } from "zod";
+import { furnitureImageRequestSchema, furnitureImageSchema } from "./furnitureImages.schema";
 
 export const furnitureSchema = z.object({
     id: z.number(),
@@ -9,14 +10,18 @@ export const furnitureSchema = z.object({
     amount: z.number().min(1).refine(amount => amount >= 1, {
         message: 'A quantidade deve ser um número positivo maior ou igual a 1'
     }),
-    is_available: z.boolean().default(true)
+    is_available: z.boolean().default(true),
+    furnitureImages: z.array(furnitureImageSchema)
 })
 
 export const furnituresResponseSchema = furnitureSchema.array()
 
 export const furnitureRequestSchema = furnitureSchema.omit({
     id: true,
-    is_available: true
+    is_available: true,
+    furnitureImages: true
+}).extend({
+    furnitureImages: z.array(furnitureImageRequestSchema)
 })
 
 export const furnitureUpdateSchema = furnitureSchema.partial().omit({ id: true }).extend({
