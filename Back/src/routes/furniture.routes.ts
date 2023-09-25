@@ -9,7 +9,7 @@ import { ensureFurnitureMiddleware } from "../middlewares/ensureFurniture.middle
 export const furnitureRouter = Router()
 
 furnitureRouter.post("", ensureReqIsValidMiddleware(furnitureRequestSchema), ensureUserAuthMiddleware, ensureIsSuperUserMiddleware, ensureFurnitureMiddleware, createFurnitureController)
-furnitureRouter.get("",  ensureUserAuthMiddleware, ensureIsSuperUserMiddleware, retriveFurnitureController)
-furnitureRouter.get("/:id",  ensureUserAuthMiddleware, ensureIsSuperUserMiddleware, retriveByIdFurnitureController)
+furnitureRouter.get("", retriveFurnitureController)
+furnitureRouter.get("/:id", retriveByIdFurnitureController)
 furnitureRouter.patch("/:id",ensureReqIsValidMiddleware(furnitureUpdateSchema), ensureUserAuthMiddleware, ensureIsSuperUserMiddleware, ensureFurnitureMiddleware, updateFurnitureController)
 furnitureRouter.delete("/:id", ensureUserAuthMiddleware, ensureIsSuperUserMiddleware, deleteFurnitureController)
