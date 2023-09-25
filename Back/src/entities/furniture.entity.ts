@@ -14,6 +14,8 @@ export class Furniture {
   amount: number
   @Column({default: true})
   is_available: boolean
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  register_date: Date;
 
   @OneToMany(() => FurnitureImages, (furnitureImages) => furnitureImages.furniture, { onDelete: "CASCADE" })
   furnitureImages: FurnitureImages[];

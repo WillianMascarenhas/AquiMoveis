@@ -11,6 +11,7 @@ export const furnitureSchema = z.object({
         message: 'A quantidade deve ser um número positivo maior ou igual a 1'
     }),
     is_available: z.boolean().default(true),
+    register_date: z.date().nullish().default(() => new Date()),
     furnitureImages: z.array(furnitureImageSchema)
 })
 
@@ -19,6 +20,7 @@ export const furnituresResponseSchema = furnitureSchema.array()
 export const furnitureRequestSchema = furnitureSchema.omit({
     id: true,
     is_available: true,
+    register_date: true,
     furnitureImages: true
 }).extend({
     furnitureImages: z.array(furnitureImageRequestSchema)
