@@ -1,6 +1,9 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
+import { IFurnitureArray } from "@/interfaces/furniture.interface";
+import { api } from "@/service/api";
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 import { Poppins } from "next/font/google";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 
@@ -9,13 +12,23 @@ const poppins = Poppins({
   weight: "400",
 });
 
-export default function Home() {
+export type FurnitureProps = {
+  furniture:IFurnitureArray
+}
+
+export const getStaticProps: GetStaticProps<FurnitureProps> = async (ctx) => {
+  const response = await api.get("/furniture");
+
+  return { props: { furniture: response.data }, revalidate: 60 };
+};
+
+const Home = ({ furniture }: FurnitureProps) => {
   return (
     <main className={`${poppins.className}`}>
       <Header />
-      <Main />
+      <Main furniture={furniture} />
       <Footer />
-      <div className="fixed bottom-8 right-8 z-50  bg-[#25D366] rounded-[100%] p-[10px]">
+      <div className="fixed bottom-8 right-8 z-50  bg-[#25D366] rounded-[100%] p-[10px] hover:scale-110 duration-200">
         <button className="flex justify-center items-center text-gray-0">
           <AiOutlineWhatsApp size={58}  />
         </button>
@@ -23,3 +36,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default Home

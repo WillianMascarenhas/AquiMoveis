@@ -1,12 +1,8 @@
-import { LoginForm } from "@/components/Forms/loginForm";
-import { ILogin } from "@/interfaces/user.interface";
+import { LoginForm } from "@/components/Forms/Login";
 import { NextPage } from "next";
 
-interface LoginProps {
-  loginData: ILogin;
-}
 
-const loginPage: NextPage<LoginProps> = ({ loginData }: LoginProps) => {
+const loginPage: NextPage= () => {
   return (
     <main className="body z-10 flex justify-center items-center">
       <div

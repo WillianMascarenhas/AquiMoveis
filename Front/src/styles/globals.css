@@ -11,30 +11,76 @@
 
 @layer components {
   .body {
-    @apply bg-gray-250 relative -z-50 h-screen text-gray-1000 
+    @apply bg-gray-250 relative -z-50 h-screen text-gray-1000;
   }
   .container {
     @apply flex max-w-[90%] w-[100%];
   }
 
-.nav {
-  @apply text-base bg-transparent py-4 px-6 text-brand1-750 relative transition-all duration-500 ease-in-out;
-}
+  .form {
+    @apply flex flex-col gap-[32px] relative w-[90%] items-center
+  }
 
-.nav:hover::before {
-  @apply w-full;
-}
+  .input_container {
+    @apply flex gap-[4px] items-center w-full justify-center relative
+  }
 
-.before-nav {
-  @apply absolute left-0 bottom-0 h-2 w-0 bg-brand1-750 transition-all duration-500 ease-in-out;
-}
+  .input {
+    @apply flex w-full sm:w-[75%] bg-transparent border-b-2 border-gray-400 focus:outline-none pb-1  focus:border-brand1-1000 duration-150
+  }
 
-.hover:before-nav:hover::before {
-  @apply w-full;
-}
+  .label {
+    @apply  pb-1
+  }
+  .show_password {
+    @apply  fixed right-[31%] sm:right-[28.5%]
+  }
+  .span_error {
+    @apply  absolute right-6 top-8 text-sm text-brand2-1000
+  }
 
-.buttonMain {
-  @apply flex items-center gap-3 text-lg border-2 border-brand2-1000 rounded-lg p-[5px_12px] hover:border-transparent duration-300;
-}
+  .nav {
+    @apply text-base bg-transparent py-4 px-6 text-brand1-750 relative transition-all duration-500 ease-in-out;
+  }
 
+  .nav:hover::before {
+    @apply w-full;
+  }
+
+  .before-nav {
+    @apply absolute left-0 bottom-0 h-2 w-0 bg-brand1-750 transition-all duration-500 ease-in-out;
+  }
+
+  .hover:before-nav:hover::before {
+    @apply w-full;
+  }
+
+  .buttonMain {
+    @apply flex items-center gap-3 text-lg border-2 border-brand2-1000 rounded-lg p-[5px_12px] hover:border-transparent duration-300;
+  }
+
+  .slide {
+    @apply scale-[0.8] duration-300 opacity-[40%] h-[300px] sm:h-[450px] relative focus:outline-none;
+  }
+  .active_slide {
+    @apply scale-[1.0] duration-300 opacity-[100%] focus:outline-none;
+  }
+  .arrow {
+    @apply absolute top-1/2 z-10 translate-x-0 translate-y-[-50%] text-2xl rounded-full p-2 bg-black/20 text-gray-250 hover:text-brand1-1000 hover:bg-brand2-1000/20 duration-200 cursor-pointer
+  }
+  .arrow_right {
+    @apply  right-7
+  }
+  .arrow_left {
+    @apply  left-7
+  }
+  .cursor {
+    @apply  w-full h-full rounded-xl absolute top-1/2 z-0  translate-y-[-50%] focus:outline-none
+  }
+  .grabbing {
+    @apply  cursor-grabbing
+  }
+  .grab {
+    @apply  cursor-grab
+  }
 }

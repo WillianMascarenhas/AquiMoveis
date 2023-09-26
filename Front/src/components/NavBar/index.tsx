@@ -3,8 +3,12 @@ import logo from "../../../public/Logo/Captura_de_tela_2023-09-13_092845-removeb
 import Link from "next/link";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState } from "react"
+import { useRouter } from 'next/router';
 
 export const NavBar = () => {
+    const router = useRouter();
+
+    const currentUrl = router.asPath;
 
     const [nav, setNav] = useState(false)
 
@@ -51,10 +55,13 @@ export const NavBar = () => {
                                 <figcaption className="hidden">Website logo</figcaption>
                             </figure>
                         </Link>
-                        <div className="flex items-start flex-col gap-5 mt-[52px]">
-                            <Link href="" className=" border-2 border-gray-750 rounded-lg p-[7px_12px] bg-gray-750 text-gray-1000 hover:text-brand1-1000 hover:border-brand1-1000 hover:bg-gray-250 duration-300 ">Login</Link>
-                            <Link href="" className="border-2 border-brand1-750 rounded-lg p-[7px_12px] bg-brand1-750 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-1000 duration-300">Cadastra-se</Link>
-                        </div>
+                        {
+                        currentUrl === "/dashbord"? null :
+                            <div className="flex items-start flex-col gap-5 mt-[52px]">
+                                <Link href="" className=" border-2 border-gray-750 rounded-lg p-[7px_12px] bg-gray-750 text-gray-1000 hover:text-brand1-1000 hover:border-brand1-1000 hover:bg-gray-250 duration-300 ">Login</Link>
+                                <Link href="" className="border-2 border-brand1-750 rounded-lg p-[7px_12px] bg-brand1-750 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-1000 duration-300">Cadastra-se</Link>
+                            </div>
+                        }
                         <ul className="lg:hidden w-[100%] flex flex-col items-start mt-[32px]">
                             <li className="w-[100%] h-[100px] flex items-center border-t-2 border-brand2-1000">
                                 <Link className="w-[100%] flex" href={"/"}>Início</Link>
@@ -71,10 +78,13 @@ export const NavBar = () => {
                         </ul>
                 </div>
             </div>
-            <div className="hidden lg:flex items-center gap-11">
-                <Link href="" className=" hover:text-brand1-1000 duration-300">Login</Link>
-                <Link className="border-2 border-brand1-750 rounded-lg p-[7px_12px] bg-brand1-750 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-1000 duration-300" href="">Cadastra-se</Link>
-            </div>
+            {
+            currentUrl === "/dashbord"? null :
+                <div className="hidden lg:flex items-center gap-11">
+                    <Link href="/login" className=" hover:text-brand1-1000 duration-300">Login</Link>
+                    <Link className="border-2 border-gray-400 rounded-lg p-[7px_12px] bg-gray-300 hover:bg-brand1-1000 hover:text-gray-0 hover:border-brand1-750 duration-300" href="">Cadastra-se</Link>
+                </div>
+            }
         </div>
     </nav>
   );
