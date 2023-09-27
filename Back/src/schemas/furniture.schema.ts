@@ -7,8 +7,8 @@ export const furnitureSchema = z.object({
     value: z.number().min(0).refine(value => value > 0, {
         message: 'O valor deve ser um número positivo maior que 0'
     }),
-    amount: z.number().min(0).refine(amount => Number.isInteger(amount), {
-        message: 'A quantidade deve ser um número inteiro'
+    amount: z.number().min(1).refine(amount => amount >= 1, {
+        message: 'A quantidade deve ser um número positivo maior ou igual a 1'
     }),
     type: z.string(),
     is_available: z.boolean().default(true),
