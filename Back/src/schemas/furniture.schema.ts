@@ -7,9 +7,10 @@ export const furnitureSchema = z.object({
     value: z.number().min(0).refine(value => value > 0, {
         message: 'O valor deve ser um número positivo maior que 0'
     }),
-    amount: z.number().min(1).refine(amount => amount >= 1, {
-        message: 'A quantidade deve ser um número positivo maior ou igual a 1'
+    amount: z.number().min(0).refine(amount => Number.isInteger(amount), {
+        message: 'A quantidade deve ser um número inteiro'
     }),
+    type: z.string().nullish(),
     is_available: z.boolean().default(true),
     register_date: z.date().nullish().default(() => new Date()),
     furnitureImages: z.array(furnitureImageSchema)
@@ -26,9 +27,10 @@ export const furnitureRequestSchema = furnitureSchema.omit({
     furnitureImages: z.array(furnitureImageRequestSchema)
 })
 
-export const furnitureUpdateSchema = furnitureSchema.partial().omit({ id: true }).extend({
-    amount: z.number().min(0).refine(amount => Number.isInteger(amount), {
-        message: 'A quantidade deve ser um número inteiro'
-    }),
-});
+export const furnitureUpdateSchema = furnitureSchema.partial().omit({ id: true })
+// export const furnitureUpdateSchema = furnitureSchema.partial().omit({ id: true }).extend({
+//     amount: z.number().min(0).refine(amount => Number.isInteger(amount), {
+//         message: 'A quantidade deve ser um número inteiro'
+//     }),
+// });
 

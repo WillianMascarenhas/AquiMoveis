@@ -12,6 +12,8 @@ export class Furniture {
   value: number;
   @Column()
   amount: number
+  @Column()
+  type: string
   @Column({default: true})
   is_available: boolean
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
