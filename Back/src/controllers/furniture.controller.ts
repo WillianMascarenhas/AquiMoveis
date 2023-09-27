@@ -15,7 +15,7 @@ export const createFurnitureController = async (req:Request, res: Response): Pro
 }
 
 export const retriveFurnitureController = async (req:Request, res: Response): Promise<Response> =>{
-    const retrieveFurniture = await retrieveFurnitureService()
+    const retrieveFurniture = await retrieveFurnitureService(req.query)
 
     return res.status(200).json(retrieveFurniture)
 }
