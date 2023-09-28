@@ -1,22 +1,40 @@
 import { useForm } from "react-hook-form";
-import { loginSchema } from "@/schemas/user.schema";
-import { ILogin } from "@/interfaces/user.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FurnitureProps } from "@/pages/products";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { api } from "@/service/api";
 
 export const ProductsForm = ({ furniture }: FurnitureProps) => {
+  const [types, setTypes] = useState([]);
+  console.log(types);
+  const router = useRouter();
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await api.get("/furniture");
+        setTypes(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const uniqueTypes = Array.from(new Set(furniture.map((item) => item.type)));
+  const uniqueTypes = Array.from(new Set(types.map((item) => item.type)));
 
   const handleSubmitProducts = (data: any) => {
-    console.log(data);
+      if (data.type === "all") {
+      router.push(``);
+    }else{
+        router.push(`?type=${data.type}`);
+    }
   };
 
   const handleTypeClick = (type: string) => {
@@ -42,12 +60,33 @@ export const ProductsForm = ({ furniture }: FurnitureProps) => {
         }
         onSubmit={handleSubmit(handleSubmitProducts)}
       >
+        <div
+          className={
+            formOpen ? "duration-[900ms]" : "text-transparent absolute"
+          }
+        >
+          <label className="hidden" htmlFor="all">
+            Todos
+          </label>
+          <input
+            className="cursor-pointer"
+            value="TODAS"
+            type="button"
+            onClick={() => handleTypeClick("all")}
+          />
+        </div>
         {uniqueTypes.map((type, index) => (
-          <div className={formOpen ? "duration-[900ms]" : "text-transparent absolute"} key={index}>
+          <div
+            className={
+              formOpen ? "duration-[900ms]" : "text-transparent absolute"
+            }
+            key={index}
+          >
             <label className="hidden" htmlFor={type}>
               {type}
             </label>
             <input
+              className="cursor-pointer"
               value={type}
               type="button"
               onClick={() => handleTypeClick(type)}

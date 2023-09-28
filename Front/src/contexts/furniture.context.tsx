@@ -9,8 +9,6 @@ interface Props {
 }
 
 interface furnitureProviderData {
-  furniture: string,
-  setFurniture: Dispatch<SetStateAction<string>>
 }
 
 const furnitureContext = createContext<furnitureProviderData>({} as furnitureProviderData);
@@ -20,7 +18,7 @@ export function FurnitureProvider({ children }: Props) {
     const [furniture, setFurniture] = useState("/furniture")
 
   return (
-    <furnitureContext.Provider value={{ furniture, setFurniture }}>
+    <furnitureContext.Provider value={{  }}>
       {children}
     </furnitureContext.Provider>
   );
