@@ -5,9 +5,12 @@ import Image from "next/image";
 
 export const Section1 = ({ furniture }: FurnitureProps) => {
     return(
-        <section className="mt-[150px] w-[90%] pt-[80px] flex items-center lg:items-stretch flex-col lg:flex-row gap-16 relative">
-            <h1 className="absolute left-[5%] sm:left-0 top-0 text-gray-1000 text-2xl border-b-2 border-brand1-1000 pb-1">Produtos</h1>
-            <aside className="w-[90%] lg:w-[20%] bg-slate-600">
+        <section className="mt-[180px] w-[90%] pt-[80px] flex items-center lg:items-stretch flex-col lg:flex-row gap-16 relative">
+            <div className="w-full absolute left-[5%] justify-between sm:left-0 top-[-25px] flex">
+                <h1 className="text-gray-1000 text-2xl border-b-2 border-brand1-1000 pb-1">Produtos</h1>
+                <h2>input pesquisar</h2>
+            </div>
+            <aside className="w-[90%] lg:w-[20%] relative">
                 <ProductsForm furniture={furniture}/>
             </aside>
             <main className="w-[90%] lg:w-[80%] ">

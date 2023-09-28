@@ -36,7 +36,7 @@ export const CarouselMain = () => {
     <div className="max-w-[1400px] h-[600px] w-full m-auto py-16 px-4 relative">
       <div
         style={{ backgroundImage: `url(${BannerImages[currentIndex].imageUrl})` }}
-        className="w-full h-[100%] rounded-2xl border-2 border-gray-250 bg-center bg-cover duration-1000"
+        className="w-full h-full rounded-2xl border-2 border-gray-250 bg-center bg-no-repeat xl:bg-cover duration-1000"
       ></div>
 
       {/* <div className="absolute z-10 inset-0 flex items-center justify-between p-4">

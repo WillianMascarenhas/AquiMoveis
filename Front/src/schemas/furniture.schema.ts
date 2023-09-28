@@ -14,6 +14,7 @@ export const furnitureSchema = z.object({
     amount: z.number().min(1).refine(amount => amount >= 1, {
         message: 'A quantidade deve ser um número positivo maior ou igual a 1'
     }),
+    type: z.string(),
     is_available: z.boolean().default(true),
     register_date: z.date().nullish().default(() => new Date()),
     furnitureImages: z.array(furnitureImageSchema)

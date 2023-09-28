@@ -2,11 +2,11 @@
       export const BannerImages = [
             {
               "id": 1,
-              "imageUrl": "https://images.pexels.com/photos/9703865/pexels-photo-9703865.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "imageUrl": "https://res.cloudinary.com/willmasca/image/upload/v1695819696/AquiMoveis/BannerAquiMoveis1.png",
             },
             {
               "id": 2,
-              "imageUrl": "https://images.pexels.com/photos/9703890/pexels-photo-9703890.jpeg?auto=compress&cs=tinysrgb&w=600",
+              "imageUrl": "https://res.cloudinary.com/willmasca/image/upload/v1695821233/AquiMoveis/BannerAquiMoveis2.png",
             },
           ]
       

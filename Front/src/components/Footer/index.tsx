@@ -7,7 +7,7 @@ import { BiLogoInstagram, BiMailSend } from "react-icons/bi";
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-center items-center bg-brand2-750 p-[100px-0px] relative z-10">
+    <footer id="contact_footer" className="flex justify-center items-center bg-brand2-750 p-[100px-0px] relative z-10">
       <div className="md:flex justify-between w-[90%] h-full p-[90px_0px] items-start">
         <div className="flex flex-col gap-[32px]">
           <Link href={"/"}>

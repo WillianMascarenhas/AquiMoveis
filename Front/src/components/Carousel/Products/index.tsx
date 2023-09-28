@@ -29,7 +29,7 @@ export const CarouselMainProducts = ({furniture}: FurnitureProps) => {
 
   const settings = {
     infinite: true,
-    // lazyLoad: true,
+    // lazyLoad: "ondemand",
     speed: 800,
     slidesToShow: 3,
     centerMode: true,
@@ -87,7 +87,7 @@ export const CarouselMainProducts = ({furniture}: FurnitureProps) => {
                         <Image className="w-full h-full rounded-xl absolute top-1/2 z-0  translate-y-[-50%] focus:outline-none" key={item.id} height={2000} width={2000} src={item.furnitureImages[0].url} alt={item.name} />
                     </Link>
                     :
-                    <Image className={grab?"cursor grab": "cursor grabbing"} onMouseDown={() => setGrab(true)} onMouseUp={() => setGrab(false)} key={item.id} height={2000} width={2000} src={item.furnitureImages[0].url} alt={item.name} />
+                    <Image className={grab? "cursor grabbing" : "cursor grab"} onMouseDown={() => setGrab(true)} onMouseUp={() => setGrab(false)} key={item.id} height={2000} width={2000} src={item.furnitureImages[0].url} alt={item.name} />
                     }
                     {
                         deferenceInDays <= 2?

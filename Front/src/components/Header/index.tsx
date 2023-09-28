@@ -1,6 +1,7 @@
 import logo from "../../../public/Logo/Captura_de_tela_2023-09-13_092845-removebg-preview.png"
 import Image from "next/image"
-import { NavBar } from "../NavBar"
+import { NavBar } from "../NavBar/HomePage"
+
 
 export const Header = () => {
     return (
