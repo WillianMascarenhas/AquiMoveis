@@ -5,3 +5,9 @@ export type IFurnitureResponse = z.infer<typeof furnitureSchema>
 export type IFurnituresResponse = z.infer<typeof furnituresResponseSchema>
 export type IFurnitureRequest = z.infer<typeof furnitureRequestSchema>
 export type IFurnitureUpdate = z.infer<typeof furnitureUpdateSchema>
+
+export type TFurniturePagination = {
+    page: number | undefined | null,
+    perPage: number | undefined | null,
+    data: IFurnituresResponse
+}

@@ -1,11 +1,11 @@
 import { AppDataSource } from "../../data-source";
 import { Furniture } from "../../entities/furniture.entity";
-import { IFurnituresResponse } from "../../interfaces/furniture.interface";
+import { IFurnituresResponse, TFurniturePagination } from "../../interfaces/furniture.interface";
 import { furnituresResponseSchema } from "../../schemas/furniture.schema";
 
 export const retrieveFurnitureService = async (
   queryReq: any
-): Promise<IFurnituresResponse> => {
+): Promise<TFurniturePagination> => {
   const furnitureRepository = AppDataSource.getRepository(Furniture);
   const page = Number(queryReq.page);
   const perPage = Number(queryReq.perPage);
@@ -23,7 +23,12 @@ export const retrieveFurnitureService = async (
         },
         relations: ["furnitureImages"],
       });
-      return furnituresResponseSchema.parse(listFurniture);
+      const verify = furnituresResponseSchema.parse(listFurniture);
+      return {
+        page: page || null,
+        perPage: perPage || null,
+        data: verify
+      } 
     } else {
       listFurniture = await furnitureRepository.find({
         where: {
@@ -31,7 +36,12 @@ export const retrieveFurnitureService = async (
         },
         relations: ["furnitureImages"],
       });
-      return furnituresResponseSchema.parse(listFurniture);
+      const verify = furnituresResponseSchema.parse(listFurniture);
+      return {
+        page: page || null,
+        perPage: perPage || null,
+        data: verify
+      } 
     }
   }
   if (page || perPage) {
@@ -41,12 +51,22 @@ export const retrieveFurnitureService = async (
       relations: ["furnitureImages"],
     });
 
-    return furnituresResponseSchema.parse(listFurniture);
+    const verify = furnituresResponseSchema.parse(listFurniture);
+    return {
+      page: page || null,
+      perPage: perPage || null,
+      data: verify
+    } 
   } else {
     listFurniture = await furnitureRepository.find({
       relations: ["furnitureImages"],
     });
 
-    return furnituresResponseSchema.parse(listFurniture);
+    const verify = furnituresResponseSchema.parse(listFurniture);
+    return {
+      page: page || null,
+      perPage: perPage || null,
+      data: verify
+    } 
   }
 };
