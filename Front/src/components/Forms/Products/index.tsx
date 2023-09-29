@@ -8,7 +8,6 @@ import { api } from "@/service/api";
 
 export const ProductsForm = ({ furniture }: FurnitureProps) => {
   const [types, setTypes] = useState([]);
-  console.log(types);
   const router = useRouter();
   useEffect(() => {
     (async () => {
