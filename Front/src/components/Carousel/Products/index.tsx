@@ -74,7 +74,7 @@ export const CarouselMainProducts = ({furniture}: FurnitureProps) => {
       <>
      <div className="w-full relative ">
         <Slider {...settings}>
-          {furniture.map((item, itemI) => {
+          {furniture.data.map((item, itemI) => {
               const dateAPIObj = item.register_date ? new Date(item.register_date) : null;
               
               const deferenceInMili = new Date() - dateAPIObj;

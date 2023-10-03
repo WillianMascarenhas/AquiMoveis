@@ -5,33 +5,26 @@ import { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { api } from "@/service/api";
+import { useFurniture } from "@/contexts/furniture.context";
 
 export const ProductsForm = ({ furniture }: FurnitureProps) => {
-  const [types, setTypes] = useState([]);
+  const {furnitureObj, setFurnitureType} = useFurniture()
+  
   const router = useRouter();
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await api.get("/furniture");
-        setTypes(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const uniqueTypes = Array.from(new Set(types.map((item) => item.type)));
+  const uniqueTypes = Array.from(new Set(furnitureObj.map((item) => item.type)));
 
   const handleSubmitProducts = (data: any) => {
       if (data.type === "all") {
+        setFurnitureType(null)
       router.push(``);
     }else{
+        setFurnitureType(data.type)
         router.push(`?type=${data.type}`);
     }
   };
@@ -43,7 +36,7 @@ export const ProductsForm = ({ furniture }: FurnitureProps) => {
   const [formOpen, setFormOpen] = useState(true);
 
   return (
-    <div className="sticky top-[150px] flex flex-col border-t-[1px] border-gray-400 p-[20px_0px] gap-8 w-full">
+    <div className="sticky top-[150px] flex flex-col border-t-[1px] border-gray-400 p-[20px_0px] gap-5 w-full">
       <span
         className="flex justify-between self-center items-center w-[90%] cursor-pointer text-base"
         onClick={() => setFormOpen(!formOpen)}
@@ -54,8 +47,8 @@ export const ProductsForm = ({ furniture }: FurnitureProps) => {
       <form
         className={
           formOpen
-            ? "flex flex-col absolute top-[70px] gap-5 self-center w-[100%] duration-[250ms] bg-gray-200 border-b-[1px] pl-3 pb-5 border-gray-400"
-            : "flex flex-col absolute -z-10 top-[65px] gap-5 self-center w-[100%] duration-[250ms] border-b-[1px] border-gray-400"
+            ? "flex flex-col top-[70px]  gap-5 self-center w-[100%] duration-[250ms] bg-gray-200 border-b-[1px] pl-3 pb-5 border-gray-400"
+            : "flex flex-col -z-10 top-[65px] gap-5 self-center w-[100%] duration-[250ms] border-b-[1px] border-gray-400"
         }
         onSubmit={handleSubmit(handleSubmitProducts)}
       >
